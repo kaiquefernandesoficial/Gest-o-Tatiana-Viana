@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>Tatiana Viana | Moda Feminina</title>
+
+  <!-- PWA: Android/Chrome -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#3d0f3a">
+
+  <!-- PWA: iOS/Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Tatiana Viana">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #3d0f3a;
+      overflow: hidden;
+    }
+
+    #app-frame {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    #splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #3d0f3a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s ease;
+      z-index: 10;
+    }
+
+    #splash img {
+      width: 140px;
+      height: 140px;
+      border-radius: 24px;
+      margin-bottom: 24px;
+    }
+
+    #splash .spinner {
+      width: 30px;
+      height: 30px;
+      border: 3px solid rgba(250, 246, 240, 0.25);
+      border-top-color: #d4af6a;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    #splash.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ⚠️ SUBSTITUA A URL ABAIXO PELA URL DO SEU WEB APP DO GOOGLE APPS SCRIPT -->
+  <iframe id="app-frame"
+    src="https://script.google.com/macros/s/AKfycbxKr2PIAv-tPJjLA0p-UQ7dtnrhn8TX8UKKpgtB1lgmKIB-Z5o4S2q7r4nXd5hsD4hYlg/exec"
+    title="Tatiana Viana - Moda Feminina"
+    onload="document.getElementById('splash').classList.add('hidden')">
+  </iframe>
+
+  <div id="splash">
+    <img src="icons/icon-192.png" alt="Tatiana Viana">
+    <div class="spinner"></div>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('service-worker.js');
+      });
+    }
+
+    // Some browsers keep the splash if the iframe never fires "load"
+    setTimeout(function () {
+      document.getElementById('splash').classList.add('hidden');
+    }, 6000);
+  </script>
+
+</body>
+</html>
